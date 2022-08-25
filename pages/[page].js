@@ -1,12 +1,17 @@
 import React from 'react'
-import { Header, Paragraph, Image } from 'flotiq-components-react'
 import { Helmet } from 'react-helmet'
+import { Header, Paragraph, Image } from 'flotiq-components-react'
 import Layout from '../layouts/layout'
 import ProjectGallery from '../components/ProjectGallery'
 import config from '../lib/config'
+import {
+    getProjectImage,
+    getProjectAll,
+    getProjectBySlug,
+} from '../lib/project'
+import FlotiqImage from '../lib/flotiqImage'
 
-const PortfolioProjectTemplate = ({ data = {} }) => {
-    const { project = {} } = data
+const PortfolioProjectTemplate = ({ data }) => {
     return (
         <Layout additionalClass={['bg-medium-gray md:bg-white']}>
             <Helmet>
@@ -22,24 +27,24 @@ const PortfolioProjectTemplate = ({ data = {} }) => {
                                     'text-center lg:text-left lg:mb-10',
                             ]}
                         >
-                            {project.name || 'name'}
+                            {data?.name || 'name'}
                         </Header>
                         <Paragraph
                             additionalClasses={[
                                 'font-normal italic uppercase text-sm leading-loose px-7 lg:px-0',
                             ]}
                         >
-                            {project.description || 'description'}
+                            {data?.description || 'description'}
                         </Paragraph>
                     </div>
                     <div className="col-span-2 order-1 lg:order-2">
-                        {project?.headerImage && (
+                        {data?.headerImage && (
                             <Image
-                                url={
-                                    project?.headerImage?.[0] &&
-                                    project?.headerImage?.[0]?.localFile
-                                        ?.publicURL
-                                }
+                                url={FlotiqImage.getSrc(
+                                    data?.headerImage,
+                                    0,
+                                    0
+                                )}
                                 rounded="3xl"
                                 stretched
                                 additionalClasses={['px-1']}
@@ -55,21 +60,21 @@ const PortfolioProjectTemplate = ({ data = {} }) => {
                                     'font-archivo uppercase tracking-widest !text-2xl !p-0 lg:mb-5',
                                 ]}
                             >
-                                {project?.gallery_name || 'header'}
+                                {data?.gallery_name || 'header'}
                             </Header>
                             <Paragraph
                                 additionalClasses={[
                                     'font-normal italic uppercase text-sm leading-loose',
                                 ]}
                             >
-                                {project?.gallery_description || 'description'}
+                                {data?.gallery_description || 'description'}
                             </Paragraph>
                         </div>
                     </div>
                     <div className="col-span-2">
                         <ProjectGallery
-                            gallery={project?.gallery}
-                            name={project?.name}
+                            gallery={data?.gallery}
+                            name={data?.name}
                         />
                     </div>
                 </div>
@@ -79,3 +84,43 @@ const PortfolioProjectTemplate = ({ data = {} }) => {
 }
 
 export default PortfolioProjectTemplate
+
+export async function getStaticProps({ params }) {
+    const dataFetch = await getProjectBySlug(params.page)
+    const data = dataFetch.data[0]
+
+    if (data?.headerImage) {
+        data.headerImage = await getProjectImage(data.headerImage[0].dataUrl)
+    }
+
+    if (data?.gallery?.length > 0) {
+        for (let i = 0; i < data.gallery.length; i++) {
+            if (data.gallery[i].dataUrl) {
+                data.gallery[i] = await getProjectImage(data.gallery[i].dataUrl)
+            }
+        }
+    }
+
+    return {
+        props: {
+            data: data,
+            pageContext: {
+                currentPage: params.page,
+            },
+        },
+    }
+}
+
+export async function getStaticPaths() {
+    const fetchAllProjects = await getProjectAll()
+    const allProjects = fetchAllProjects.data
+    const paths = allProjects.map((el) => {
+        return {
+            params: { page: el.slug },
+        }
+    })
+    return {
+        paths,
+        fallback: false,
+    }
+}

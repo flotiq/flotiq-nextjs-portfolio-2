@@ -2,6 +2,7 @@ import React from 'react'
 import Carousel from 'react-multi-carousel'
 import { Image } from 'flotiq-components-react'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/solid'
+import FlotiqImage from '../lib/flotiqImage'
 
 const responsive = {
     desktop: {
@@ -54,7 +55,7 @@ const ProjectGallery = ({ gallery }) => (
                 {gallery.map((image) => (
                     <div className="px-2" key={image.id}>
                         <Image
-                            url={image.localFile.publicURL}
+                            url={FlotiqImage.getSrc(image, 0, 0)}
                             additionalClasses={['rounded-3xl']}
                             key={image.id}
                         />

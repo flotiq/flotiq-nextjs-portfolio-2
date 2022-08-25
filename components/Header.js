@@ -2,8 +2,8 @@ import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Image } from 'flotiq-components-react'
-import Logo from '../public/assets/Logo.png'
 import Link from 'next/link'
+import Logo from '../public/assets/Logo.png'
 
 const Header = () => (
     <Disclosure as="nav">

@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import { getProjectData, getProjectImage } from '../lib/project'
+import { getProjectAll, getProjectImage } from '../lib/project'
 import { Header, Paragraph } from 'flotiq-components-react'
 import Layout from '../layouts/layout'
 import Contact from '../components/Contact'
@@ -76,17 +76,17 @@ export default function IndexPage({ data }) {
 }
 
 export async function getStaticProps() {
-    const dataPage = await getProjectData()
+    const projects = await getProjectAll()
 
-    for (var i = 0; i < dataPage.data.length; i++) {
-        dataPage.data[i].headerImage = await getProjectImage(
-            dataPage.data[i].headerImage[0].dataUrl
+    for (var i = 0; i < projects.data.length; i++) {
+        projects.data[i].headerImage = await getProjectImage(
+            projects.data[i].headerImage[0].dataUrl
         )
     }
 
     return {
         props: {
-            data: dataPage.data,
+            data: projects.data,
         },
     }
 }

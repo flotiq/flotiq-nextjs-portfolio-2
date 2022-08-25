@@ -1,8 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-// import ProjectCard from '../components/ProjectCard'
-import FlotiqImage from '../lib/flotiqImage'
 import dynamic from 'next/dynamic'
+import FlotiqImage from '../lib/flotiqImage'
 
 const DynamicProjectCard = dynamic(() => import('../components/ProjectCard'), {
     ssr: false,
