@@ -55,5 +55,10 @@ module.exports = {
                 namedComponents: 'arrow-function',
             },
         ],
+        'linebreak-style': [
+            'error',
+            process.platform === 'win32' ? 'windows' : 'unix',
+        ],
+        semi: 0,
     },
 }
