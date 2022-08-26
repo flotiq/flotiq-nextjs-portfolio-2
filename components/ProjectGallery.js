@@ -46,18 +46,19 @@ const ProjectGallery = ({ gallery }) => (
         {gallery && (
             <Carousel
                 draggable={false}
-                infinite={true}
-                autoPlay={true}
+                infinite
+                autoPlay
                 autoPlaySpeed={3000}
                 responsive={responsive}
                 arrows={false}
-                renderButtonGroupOutside={true}
+                renderButtonGroupOutside
                 customButtonGroup={<CarouselNavigation />}
             >
                 {gallery.map((image) => (
                     <div className="px-2" key={image.id}>
                         <Image
                             url={FlotiqImage.getSrc(image, 0, 0)}
+                            alt="Gallery Images"
                             additionalClasses={['rounded-3xl']}
                             key={image.id}
                         />

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'flotiq-components-react'
+import { sanitize } from 'dompurify'
 
 const ProjectCard = ({ name, excerpt, image }) => (
     <Card
@@ -28,7 +29,7 @@ const ProjectCard = ({ name, excerpt, image }) => (
                 </Card.Title>
                 <Card.Text additionalClasses={[' ']}>
                     <span
-                        dangerouslySetInnerHTML={{ __html: excerpt }}
+                        dangerouslySetInnerHTML={{ __html: sanitize(excerpt) }}
                         className="line-clamp-5 lg:line-clamp-3 lg:line-clamp-4 font-lora text-sm
                         xl:text-base uppercase italic mb-10 lg:mb-5 xl:mb-10"
                     />
@@ -39,9 +40,19 @@ const ProjectCard = ({ name, excerpt, image }) => (
                         label="Explore"
                         size="lg"
                         additionalClasses={[
-                            'font-archivo font-normal ' +
-                                'uppercase !text-base tracking-wide md:-ml-20 relative z-[1] ' +
-                                '!py-5 lg:!py-3 xl:!py-5',
+                            [
+                                'font-archivo',
+                                'font-normal',
+                                'uppercase',
+                                '!text-base',
+                                'tracking-wide',
+                                'md:-ml-20',
+                                'relative',
+                                'z-[1]',
+                                '!py-5 ',
+                                'lg:!py-3 ',
+                                'xl:!py-5',
+                            ].join(' '),
                         ]}
                     />
                     <div

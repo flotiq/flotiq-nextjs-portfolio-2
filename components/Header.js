@@ -39,7 +39,7 @@ const Header = () => (
                         >
                             <div className="flex-shrink-0 flex items-center">
                                 <Link href="/" passHref>
-                                    <a>
+                                    <a href="replace">
                                         <Image
                                             url={Logo}
                                             additionalClasses={[

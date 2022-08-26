@@ -12,7 +12,7 @@ module.exports = {
         },
     },
     extends: ['airbnb', 'eslint:recommended', 'next'],
-    plugins: ['jsx-a11y', 'react-hooks', 'flowtype', 'import'],
+    plugins: ['jsx-a11y', 'react-hooks', 'import'],
     rules: {
         /* Restrict file extensions that may contain JSX */
         'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
@@ -60,5 +60,15 @@ module.exports = {
             process.platform === 'win32' ? 'windows' : 'unix',
         ],
         semi: 0,
+        'operator-linebreak': ['error', 'before'],
+        'comma-dangle': ['error', 'only-multiline'],
+        'object-curly-newline': [
+            'error',
+            {
+                ImportDeclaration: { multiline: true },
+            },
+        ],
+        'react/no-danger': 0,
+        'no-await-in-loop': 0,
     },
 }

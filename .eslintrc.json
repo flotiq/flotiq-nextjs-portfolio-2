@@ -4,7 +4,6 @@
     "es6": true
   },
   "extends": [
-    "next/core-web-vitals",
     "plugin:react/recommended",
     "airbnb",
     "next"
