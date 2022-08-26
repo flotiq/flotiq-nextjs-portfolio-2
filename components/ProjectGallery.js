@@ -18,6 +18,7 @@ const responsive = {
         items: 1,
     },
 }
+
 const CarouselNavigation = ({ goToSlide, ...rest }) => {
     const {
         carouselState: { currentSlide },
@@ -45,12 +46,12 @@ const ProjectGallery = ({ gallery }) => (
         {gallery && (
             <Carousel
                 draggable={false}
-                infinite
+                infinite={true}
                 autoPlay={true}
                 autoPlaySpeed={3000}
                 responsive={responsive}
                 arrows={false}
-                renderButtonGroupOutside
+                renderButtonGroupOutside={true}
                 customButtonGroup={<CarouselNavigation />}
             >
                 {gallery.map((image) => (

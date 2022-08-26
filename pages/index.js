@@ -1,3 +1,4 @@
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import { getProjectAll, getProjectImage } from '../lib/project'
 import { Header, Paragraph } from 'flotiq-components-react'

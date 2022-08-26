@@ -26,7 +26,7 @@ const NotFoundPage = () => (
                             variant="secondary"
                             size="lg"
                             additionalClasses={[
-                                'font-archivo font-normal ' +
+                                'font-archivo font-normal' +
                                     'uppercase !text-base tracking-wide md:-ml-20 relative z-[1] ' +
                                     '!py-5 lg:!py-3 xl:!py-5',
                             ]}
