@@ -69,6 +69,5 @@ module.exports = {
             },
         ],
         'react/no-danger': 0,
-        'no-await-in-loop': 0,
     },
 }

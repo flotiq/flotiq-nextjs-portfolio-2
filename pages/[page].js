@@ -98,24 +98,41 @@ const PortfolioProjectTemplate = ({ data }) => (
 export default PortfolioProjectTemplate
 
 export async function getStaticProps({ params }) {
+    // Fetch project
     const dataFetch = await getProjectBySlug(params.page)
+    // Assign data
     const data = dataFetch.data[0]
+    const fetchHeaderImage = []
+    const fetchGalleryImage = []
+    let updateProject = {}
 
+    // Fetch Header Image
     if (data?.headerImage) {
-        data.headerImage = await getProjectImage(data.headerImage[0].dataUrl)
+        fetchHeaderImage.push(
+            await getProjectImage(data.headerImage[0].dataUrl)
+        )
     }
 
+    // Set fetch details
     if (data?.gallery?.length > 0) {
         for (let i = 0; i < data.gallery.length; i += 1) {
-            if (data.gallery[i].dataUrl) {
-                data.gallery[i] = await getProjectImage(data.gallery[i].dataUrl)
-            }
+            fetchGalleryImage.push(getProjectImage(data.gallery[i].dataUrl))
         }
+    }
+
+    // Fetch images
+    const res = await Promise.all(fetchGalleryImage)
+
+    // Update Project details for fetched images: headerImage,gallery
+    updateProject = {
+        ...data,
+        headerImage: fetchHeaderImage[0],
+        gallery: res,
     }
 
     return {
         props: {
-            data,
+            data: updateProject,
             pageContext: {
                 currentPage: params.page,
             },

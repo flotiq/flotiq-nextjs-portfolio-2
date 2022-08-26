@@ -13,7 +13,11 @@ const ProjectCards = ({ projects }) => (
             <Link href={`/${project.slug}`} key={project.id} passHref>
                 <a>
                     <DynamicProjectCard
-                        image={FlotiqImage.getSrc(project?.headerImage, 0, 0)}
+                        image={
+                            project?.headerImage
+                                ? FlotiqImage.getSrc(project?.headerImage, 0, 0)
+                                : undefined
+                        }
                         name={project.name}
                         excerpt={project.description}
                     />
