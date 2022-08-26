@@ -46,7 +46,8 @@ const ProjectGallery = ({ gallery }) => (
             <Carousel
                 draggable={false}
                 infinite
-                autoplay={false}
+                autoPlay={true}
+                autoPlaySpeed={3000}
                 responsive={responsive}
                 arrows={false}
                 renderButtonGroupOutside
