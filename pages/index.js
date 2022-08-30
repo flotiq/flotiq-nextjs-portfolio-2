@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Header, Paragraph } from 'flotiq-components-react'
-import { getProjectAll, getProjectImage } from '../lib/project'
+import { getProjectAll } from '../lib/project'
 import Layout from '../layouts/layout'
 import Contact from '../components/Contact'
 import contactFormImage from '../public/assets/contact-form-image.png'
@@ -89,33 +89,11 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export async function getStaticProps() {
-    // Fetch all projects
     const projects = await getProjectAll()
-    // Storage for images to fetch
-    const fetchImages = []
-    let updatedProjects = []
-
-    // Set fetch details
-    for (let i = 0; i < projects.data.length; i += 1) {
-        fetchImages.push(
-            getProjectImage(projects.data[i].headerImage[0].dataUrl)
-        )
-    }
-
-    // Fetch all images
-    const res = await Promise.all(fetchImages)
-
-    // Update Projects details for headerImage
-    if (res) {
-        updatedProjects = projects.data.map((el, index) => ({
-            ...el,
-            headerImage: res[index],
-        }))
-    }
 
     return {
         props: {
-            data: updatedProjects,
+            data: projects.data,
         },
     }
 }

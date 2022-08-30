@@ -11,13 +11,13 @@ const ProjectCards = ({ projects }) => (
     <div className="flex flex-col">
         {projects?.map((project) => (
             <Link href={`/${project.slug}`} key={project.id} passHref>
-                <a>
+                <a href="replace">
                     <DynamicProjectCard
-                        image={
-                            project?.headerImage
-                                ? FlotiqImage.getSrc(project?.headerImage, 0, 0)
-                                : undefined
-                        }
+                        image={FlotiqImage.getSrc(
+                            project?.headerImage[0],
+                            0,
+                            0
+                        )}
                         name={project.name}
                         excerpt={project.description}
                     />

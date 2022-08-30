@@ -4,11 +4,7 @@ import { Header, Paragraph, Image } from 'flotiq-components-react'
 import Layout from '../layouts/layout'
 import ProjectGallery from '../components/ProjectGallery'
 import config from '../lib/config'
-import {
-    getProjectImage,
-    getProjectAll,
-    getProjectBySlug,
-} from '../lib/project'
+import { getProjectAll, getProjectBySlug } from '../lib/project'
 import FlotiqImage from '../lib/flotiqImage'
 
 const PortfolioProjectTemplate = ({ data }) => (
@@ -59,7 +55,11 @@ const PortfolioProjectTemplate = ({ data }) => (
                 <div className="col-span-2 order-1 lg:order-2">
                     {data?.headerImage && (
                         <Image
-                            url={FlotiqImage.getSrc(data?.headerImage, 0, 0)}
+                            url={FlotiqImage.getSrc(
+                                data?.headerImage?.[0],
+                                0,
+                                0
+                            )}
                             alt={data?.name}
                             rounded="3xl"
                             stretched
@@ -98,41 +98,11 @@ const PortfolioProjectTemplate = ({ data }) => (
 export default PortfolioProjectTemplate
 
 export async function getStaticProps({ params }) {
-    // Fetch project
-    const dataFetch = await getProjectBySlug(params.page)
-    // Assign data
-    const data = dataFetch.data[0]
-    const fetchHeaderImage = []
-    const fetchGalleryImage = []
-    let updateProject = {}
-
-    // Fetch Header Image
-    if (data?.headerImage) {
-        fetchHeaderImage.push(
-            await getProjectImage(data.headerImage[0].dataUrl)
-        )
-    }
-
-    // Set fetch details
-    if (data?.gallery?.length > 0) {
-        for (let i = 0; i < data.gallery.length; i += 1) {
-            fetchGalleryImage.push(getProjectImage(data.gallery[i].dataUrl))
-        }
-    }
-
-    // Fetch images
-    const res = await Promise.all(fetchGalleryImage)
-
-    // Update Project details for fetched images: headerImage,gallery
-    updateProject = {
-        ...data,
-        headerImage: fetchHeaderImage[0],
-        gallery: res,
-    }
+    const project = await getProjectBySlug(params.page)
 
     return {
         props: {
-            data: updateProject,
+            data: project.data[0],
             pageContext: {
                 currentPage: params.page,
             },
