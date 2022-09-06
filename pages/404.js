@@ -1,22 +1,51 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Header } from 'flotiq-components-react'
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import Link from 'next/link'
+import { Button, Header } from 'flotiq-components-react'
+import Layout from '../layouts/layout'
 
 const NotFoundPage = () => (
-    <main className="flex flex-col h-screen justify-center items-center">
-        <Head>
+    <Layout>
+        <Helmet>
             <title>Page not found</title>
-        </Head>
-        <div className="text-center mt-5 mb-5">
-            <Image src="/Logo.svg" alt="Flotiq" width={300} height={85} />
+        </Helmet>
+        <div className="py-32">
+            <Header
+                additionalClasses={[
+                    '!p-0 uppercase font-archivo tracking-widest !text-7xl md:!text-7xl text-center',
+                ]}
+            >
+                Page not found, sorry
+            </Header>
+            <div className="text-center mt-5 pt-5">
+                {/* Example usage of button */}
+                <Link href="/" passHref>
+                    <a href="replace">
+                        <Button
+                            label="Go back to index"
+                            variant="secondary"
+                            size="lg"
+                            additionalClasses={[
+                                [
+                                    'font-archivo',
+                                    'font-normal',
+                                    'uppercase',
+                                    '!text-base',
+                                    'tracking-wide',
+                                    'md:-ml-20',
+                                    'relative',
+                                    'z-[1]',
+                                    '!py-5',
+                                    'lg:!py-3',
+                                    'xl:!py-5',
+                                ].join(' '),
+                            ]}
+                        />
+                    </a>
+                </Link>
+            </div>
         </div>
-        <Header
-            level={1}
-            className="text-center m-24 text-5xl text-light-blue font-bold"
-        >
-            Page not found, sorry
-        </Header>
-    </main>
+    </Layout>
 )
 
 export default NotFoundPage
