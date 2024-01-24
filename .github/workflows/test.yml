@@ -1,5 +1,9 @@
 name: test-build
-on: push
+on: 
+  push:
+  schedule:
+    - cron:  '30 5 * * *'
+  workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
