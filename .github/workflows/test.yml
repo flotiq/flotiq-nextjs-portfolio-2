@@ -1,8 +1,8 @@
 name: test-build
 on: 
-  push:
-  schedule:
-    - cron:  '30 5 * * *'
+  pull_request:
+    types:
+      - opened
   workflow_dispatch:
 jobs:
   test:
