@@ -1266,10 +1266,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/archivo/-/archivo-4.5.8.tgz#6e3db07e581eb660555f1930c07f3b174d7657d8"
   integrity sha512-FLRuy4ltb7bS8wE/8gyzWJ5FZ4aJpOUZ8Ox1JfTmowz2+dJ43mw5EJZ7D2xMzjMwAyO/+UvwKhtmiC1m6F8KDA==
 
-"@fontsource/inter@^4.5.4":
-  version "4.5.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.12.tgz#a6236379bf710658db048d7087ec588754962cb6"
-  integrity sha512-bGKk4/8tube/nCk8hav0ZDBVbzJzc7m0Vt4xF5p15IN4YImwGdtKG38Oq5bU8xHNS+VfvbFFCepgQNj7Pr/Lvg==
+"@fontsource/inter@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-5.0.17.tgz#43fb1bc6bcfbfbfc3a9d19a59a4a7ab99fc1c645"
+  integrity sha512-2meBGx1kt7u5LwzGc5Sz5rka6ZDrydg6nT3x6Wkt310vHXUchIywrO8pooWMzZdHYcyFY/cv4lEpJZgMD94bCg==
 
 "@fontsource/lora@^4.5.4":
   version "4.5.11"
