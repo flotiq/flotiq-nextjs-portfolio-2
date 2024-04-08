@@ -20,7 +20,7 @@
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/typography": "^0.5.12",
     "@zeit/next-source-maps": "^0.0.3",
-    "dompurify": "^3.0.11",
+    "dompurify": "^3.1.0",
     "dotenv": "^16.4.5",
     "flotiq-components-react": "^1.1.5",
     "highlight.js": "^11.9.0",
