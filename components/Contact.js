@@ -46,7 +46,7 @@ const Contact = ({
                     name="message"
                     rows={1}
                     className="block w-full py-4 px-5 placeholder-gray bg-light-gray
-                    border-none uppercase italic rounded-full font-light"
+                    border-none uppercase italic rounded-[2rem] font-light"
                     placeholder={messageInputPlaceholder}
                     defaultValue=""
                 />
