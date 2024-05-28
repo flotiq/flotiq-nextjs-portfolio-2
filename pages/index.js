@@ -1,7 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Header, Paragraph } from 'flotiq-components-react'
-import { getProjectAll } from '../lib/project'
+import { getProjects } from '../lib/project'
+import replaceUndefinedWithNull from '../lib/sanitize'
 import Layout from '../layouts/layout'
 import Contact from '../components/Contact'
 import contactFormImage from '../public/assets/contact-form-image.png'
@@ -89,7 +90,7 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export async function getStaticProps() {
-    const projects = await getProjectAll()
+    const projects = replaceUndefinedWithNull(await getProjects())
 
     return {
         props: {

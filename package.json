@@ -2,7 +2,7 @@
   "name": "flotiq-nextjs-portfolio-2",
   "private": true,
   "description": "Flotiq nextjs starter for project portfolio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Flotiq team <helo@flotiq.com> (https://flotiq.com/)",
   "scripts": {

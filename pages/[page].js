@@ -4,7 +4,8 @@ import { Header, Paragraph, Image } from 'flotiq-components-react'
 import Layout from '../layouts/layout'
 import ProjectGallery from '../components/ProjectGallery'
 import config from '../lib/config'
-import { getProjectAll, getProjectBySlug } from '../lib/project'
+import { getProjects, getProjectBySlug } from '../lib/project'
+import replaceUndefinedWithNull from '../lib/sanitize'
 import FlotiqImage from '../lib/flotiqImage'
 
 const PortfolioProjectTemplate = ({ data }) => (
@@ -98,7 +99,9 @@ const PortfolioProjectTemplate = ({ data }) => (
 export default PortfolioProjectTemplate
 
 export async function getStaticProps({ params }) {
-    const project = await getProjectBySlug(params.page)
+    const project = replaceUndefinedWithNull(
+        await getProjectBySlug(params.page)
+    )
 
     return {
         props: {
@@ -111,7 +114,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-    const fetchAllProjects = await getProjectAll()
+    const fetchAllProjects = replaceUndefinedWithNull(await getProjects())
     const allProjects = fetchAllProjects.data
     const paths = []
 
