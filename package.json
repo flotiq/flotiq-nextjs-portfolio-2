@@ -16,7 +16,7 @@
     "@fontsource/inter": "^5.0.17",
     "@fontsource/lora": "^5.0.16",
     "@headlessui/react": "^1.7.18",
-    "@heroicons/react": "1.0.6",
+    "@heroicons/react": "2.1.5",
     "@popperjs/core": "^2.11.8",
     "@tailwindcss/typography": "^0.5.12",
     "@zeit/next-source-maps": "^0.0.3",
