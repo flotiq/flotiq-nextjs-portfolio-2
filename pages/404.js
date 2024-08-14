@@ -19,29 +19,27 @@ const NotFoundPage = () => (
             </Header>
             <div className="text-center mt-5 pt-5">
                 {/* Example usage of button */}
-                <Link href="/" passHref>
-                    <a href="replace">
-                        <Button
-                            label="Go back to index"
-                            variant="secondary"
-                            size="lg"
-                            additionalClasses={[
-                                [
-                                    'font-archivo',
-                                    'font-normal',
-                                    'uppercase',
-                                    '!text-base',
-                                    'tracking-wide',
-                                    'md:-ml-20',
-                                    'relative',
-                                    'z-[1]',
-                                    '!py-5',
-                                    'lg:!py-3',
-                                    'xl:!py-5',
-                                ].join(' '),
-                            ]}
-                        />
-                    </a>
+                <Link href="/">
+                    <Button
+                        label="Go back to index"
+                        variant="secondary"
+                        size="lg"
+                        additionalClasses={[
+                            [
+                                'font-archivo',
+                                'font-normal',
+                                'uppercase',
+                                '!text-base',
+                                'tracking-wide',
+                                'md:-ml-20',
+                                'relative',
+                                'z-[1]',
+                                '!py-5',
+                                'lg:!py-3',
+                                'xl:!py-5',
+                            ].join(' '),
+                        ]}
+                    />
                 </Link>
             </div>
         </div>
