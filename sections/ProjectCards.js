@@ -10,18 +10,16 @@ const DynamicProjectCard = dynamic(() => import('../components/ProjectCard'), {
 const ProjectCards = ({ projects }) => (
     <div className="flex flex-col">
         {projects?.map((project) => (
-            <Link href={`/${project.slug}`} key={project.id} passHref>
-                <a href="replace">
-                    <DynamicProjectCard
-                        image={FlotiqImage.getSrc(
-                            project?.headerImage[0],
-                            0,
-                            0
-                        )}
-                        name={project.name}
-                        excerpt={project.description}
-                    />
-                </a>
+            <Link href={`/${project.slug}`} key={project.id}>
+                <DynamicProjectCard
+                    image={FlotiqImage.getSrc(
+                        project?.headerImage[0],
+                        0,
+                        0
+                    )}
+                    name={project.name}
+                    excerpt={project.description}
+                />
             </Link>
         ))}
     </div>

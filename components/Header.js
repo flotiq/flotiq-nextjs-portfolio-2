@@ -38,16 +38,14 @@ const Header = () => (
                         sm:items-stretch sm:justify-start order-2 sm:order-1"
                         >
                             <div className="flex-shrink-0 flex items-center">
-                                <Link href="/" passHref>
-                                    <a href="replace">
-                                        <Image
-                                            url={Logo}
-                                            additionalClasses={[
-                                                'h-10 md:h-16 w-auto',
-                                            ]}
-                                            alt="Logo"
-                                        />
-                                    </a>
+                                <Link href="/">
+                                    <Image
+                                        url={Logo}
+                                        additionalClasses={[
+                                            'h-10 md:h-16 w-auto',
+                                        ]}
+                                        alt="Logo"
+                                    />
                                 </Link>
                             </div>
                         </div>
