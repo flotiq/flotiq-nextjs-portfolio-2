@@ -7,9 +7,6 @@ module.exports = withPlugins(
         withTM,
         [
             withImages,
-            {
-                exclude: /\.svg$/,
-            },
         ],
     ],
     {
@@ -24,7 +21,7 @@ module.exports = withPlugins(
         images: {
             dangerouslyAllowSVG: true,
             disableStaticImages: true,
-            domains: ['api.flotiq.com'],
+            remotePatterns: [{ hostname: 'api.flotiq.com' }],
         },
         webpack: (config, options) => {
             if (!options.isServer) {
