@@ -28,7 +28,7 @@ This project use:
     ```bash
     npm i -g flotiq-cli
     cd flotiq-nextjs-portfolio-2
-    flotiq import . [flotiqApiKey]
+    flotiq import .flotiq [flotiqApiKey]
     ```
 
     _Note: You need to put your Read and write API key as the `flotiqApiKey` for import to work, You don't need any content types in your account._
