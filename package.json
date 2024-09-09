@@ -34,7 +34,7 @@
     "react-dom": "18.3.1",
     "react-helmet": "^6.1.0",
     "react-multi-carousel": "^2.8.5",
-    "typescript": "^5.5.4",
+    "typescript": "^5.6.2",
     "webpack": "^5.94.0"
   },
   "devDependencies": {
