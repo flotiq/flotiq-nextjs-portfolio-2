@@ -1,6 +1,8 @@
+'use-client'
+
 import React from 'react'
 import { Card, Button } from 'flotiq-components-react'
-import { sanitize } from 'dompurify'
+import DOMPurify from 'dompurify'
 
 const ProjectCard = ({ name, excerpt, image }) => (
     <Card
@@ -29,7 +31,7 @@ const ProjectCard = ({ name, excerpt, image }) => (
                 </Card.Title>
                 <Card.Text additionalClasses={[' ']}>
                     <span
-                        dangerouslySetInnerHTML={{ __html: sanitize(excerpt) }}
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(excerpt) }}
                         className="line-clamp-5 lg:line-clamp-3 lg:line-clamp-4 font-lora text-sm
                         xl:text-base uppercase italic mb-10 lg:mb-5 xl:mb-10"
                     />

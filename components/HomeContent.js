@@ -1,40 +1,18 @@
+'use client'
+
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import { Header, Paragraph } from 'flotiq-components-react'
-import { getProjects } from '../lib/project'
-import replaceUndefinedWithNull from '../lib/sanitize'
 import Layout from '../layouts/layout'
-import Contact from '../components/Contact'
-import contactFormImage from '../public/assets/contact-form-image.png'
+import Contact from './Contact'
 import ProjectCards from '../sections/ProjectCards'
-import config from '../lib/config'
 
 const topHeader = 'Hi, I am'
 const mainHeader1 = 'Joe'
 const mainHeader2 = 'Jonas'
 const descriptionText = 'I am professional 3d artist'
 
-const IndexPage = ({ data }) => (
+const HomeContent = ({ projectsData }) => (
     <Layout additionalClass={['bg-medium-gray md:bg-white']}>
-        <Helmet>
-            <link
-                rel="icon"
-                type="image/png"
-                sizes="32x32"
-                href="/assets/favicons/favicon-32x32.png"
-            />
-            <link
-                rel="icon"
-                type="image/png"
-                sizes="16x16"
-                href="/assets/favicons/favicon-16x16.png"
-            />
-            <title>{config.siteMetadata.title}</title>
-            <meta
-                name="description"
-                content={config.siteMetadata.description}
-            />
-        </Helmet>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 px-2 sm:px-6 lg:px-8">
             <div className="py-10">
                 <Header
@@ -69,7 +47,7 @@ const IndexPage = ({ data }) => (
                     {descriptionText}
                 </Paragraph>
                 <Contact
-                    contactFormImage={contactFormImage}
+                    contactFormImage="/assets/contact-form-image.png"
                     headerText1="Let's"
                     headerText2="work"
                     headerText3="toget"
@@ -81,20 +59,10 @@ const IndexPage = ({ data }) => (
                 />
             </div>
             <div>
-                <ProjectCards projects={data} />
+                <ProjectCards projects={projectsData} />
             </div>
         </div>
     </Layout>
 )
 
-export default IndexPage
-
-export async function getStaticProps() {
-    const projects = replaceUndefinedWithNull(await getProjects())
-
-    return {
-        props: {
-            data: projects.data,
-        },
-    }
-}
+export default HomeContent
