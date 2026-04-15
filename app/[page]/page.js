@@ -1,8 +1,11 @@
+import { cache } from 'react'
 import { notFound } from 'next/navigation'
 import replaceUndefinedWithNull from '../../lib/sanitize'
 import { getProjectBySlug, getProjects } from '../../lib/project'
 import ProjectPageContent from '../../components/ProjectPageContent'
 import config from '../../lib/config'
+
+const getCachedProject = cache(async (slug) => replaceUndefinedWithNull(await getProjectBySlug(slug)))
 
 export async function generateStaticParams() {
     const fetchAllProjects = replaceUndefinedWithNull(await getProjects())
@@ -14,10 +17,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-    const project = replaceUndefinedWithNull(
-        await getProjectBySlug(params.page)
-    )
-
+    const project = await getCachedProject(params.page)
     const data = project.data[0]
 
     return {
@@ -27,10 +27,7 @@ export async function generateMetadata({ params }) {
 }
 
 const PortfolioProjectPage = async ({ params }) => {
-    const project = replaceUndefinedWithNull(
-        await getProjectBySlug(params.page)
-    )
-
+    const project = await getCachedProject(params.page)
     const data = project.data[0]
 
     if (!data) {
