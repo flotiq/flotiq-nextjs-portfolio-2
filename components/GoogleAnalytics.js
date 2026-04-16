@@ -1,29 +1,39 @@
-import '../styles/globals.css'
-import { React, useEffect } from 'react'
+'use client'
+
 import Script from 'next/script'
-import { useRouter } from 'next/router'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { Suspense, useEffect } from 'react'
 import * as gtag from '../lib/gtag'
 
-const MyApp = ({ Component, pageProps }) => {
-    const router = useRouter()
+const AnalyticsInner = () => {
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
     useEffect(() => {
-        const handleRouteChange = (url) => {
-            gtag.pageview(url)
+        if (!gtag.GA_TRACKING_ID) {
+            return
         }
-        router.events.on('routeChangeComplete', handleRouteChange)
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange)
-        }
-    }, [router.events])
+        const query = searchParams?.toString()
+        const url = query ? `${pathname}?${query}` : pathname
+        gtag.pageview(url)
+    }, [pathname, searchParams])
+
+    return null
+}
+
+const GoogleAnalytics = () => {
+    if (!gtag.GA_TRACKING_ID) {
+        return null
+    }
 
     return (
-        <div>
+        <>
             <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
             />
-            {/* eslint-disable-next-line @next/next/inline-script-id */}
             <Script
+                id="gtag-init"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
                     __html: `
@@ -36,9 +46,11 @@ const MyApp = ({ Component, pageProps }) => {
           `,
                 }}
             />
-            <Component {...pageProps} />
-        </div>
+            <Suspense fallback={null}>
+                <AnalyticsInner />
+            </Suspense>
+        </>
     )
 }
 
-export default MyApp
+export default GoogleAnalytics

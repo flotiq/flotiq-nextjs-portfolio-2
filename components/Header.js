@@ -1,9 +1,12 @@
+'use client'
+
 import React from 'react'
 import { Disclosure } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Image } from 'flotiq-components-react'
 import Link from 'next/link'
-import Logo from '../public/assets/Logo.png'
+
+const logoUrl = '/assets/Logo.png'
 
 const Header = () => (
     <Disclosure as="nav">
@@ -40,7 +43,7 @@ const Header = () => (
                             <div className="flex-shrink-0 flex items-center">
                                 <Link href="/">
                                     <Image
-                                        url={Logo}
+                                        url={logoUrl}
                                         additionalClasses={[
                                             'h-10 md:h-16 w-auto',
                                         ]}
