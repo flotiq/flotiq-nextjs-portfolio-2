@@ -6,8 +6,8 @@
   "license": "MIT",
   "author": "Flotiq team <helo@flotiq.com> (https://flotiq.com/)",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -24,7 +24,7 @@
     "dotenv": "^16.4.5",
     "flotiq-components-react": "^2.0.1",
     "highlight.js": "^11.10.0",
-    "next": "^14.2.7",
+    "next": "^16.2.4",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.5",
     "next-runtime-dotenv": "^1.5.1",
@@ -35,7 +35,7 @@
     "react-helmet": "^6.1.0",
     "react-multi-carousel": "^2.8.5",
     "typescript": "^6.0.2",
-    "webpack": "^5.94.0"
+    "@svgr/core": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

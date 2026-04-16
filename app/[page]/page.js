@@ -12,12 +12,13 @@ export async function generateStaticParams() {
     const allProjects = fetchAllProjects.data
 
     return allProjects.map((project) => ({
-        page: project.page,
+        page: project.slug,
     }))
 }
 
 export async function generateMetadata({ params }) {
-    const project = await getCachedProject(params.page)
+    const { page } = await params
+    const project = await getCachedProject(page)
     const data = project.data[0]
 
     return {
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }) {
 }
 
 const PortfolioProjectPage = async ({ params }) => {
-    const project = await getCachedProject(params.page)
+    const { page } = await params
+    const project = await getCachedProject(page)
     const data = project.data[0]
 
     if (!data) {
